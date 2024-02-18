@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import { HashRouter, Route, Routes } from "react-router-dom";
+import About from './routes/About';
+import Home from './routes/Home';
+import Navigation from "./component/Navigation";
+import Detail from "./routes/Detail";
 
-function App() {
+function App(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter basename={process.env.PUBLIC_URL}>
+      <Navigation/>
+      <Routes>
+      <Route path="/" exact={true}element={<Home />} /> 
+      <Route path="/about" element={<About />} />
+      <Route path="/movie-detail" element={<Detail />} />
+      </Routes>
+    </HashRouter> //HashRouter에 Route를 넣고 Route가 About컴포넌트를 불러옴
   );
 }
 
